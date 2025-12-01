@@ -3,10 +3,11 @@ use clap::{command, Arg, ArgAction, ArgMatches};
 use grep_rs::Config;
 use std::{env, process};
 
+#[expect(clippy::print_stderr)]
 fn main() {
     let args = read_args();
-    let config = Config::from_args(args);
-    if let Err(err) = grep_rs::run(config) {
+    let config = Config::from_args(&args);
+    if let Err(err) = grep_rs::run(&config) {
         eprintln!("Error while searching: {err}");
         process::exit(1);
     }

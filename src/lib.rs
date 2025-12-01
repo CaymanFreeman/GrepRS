@@ -11,7 +11,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn from_args(args: ArgMatches) -> Self {
+    pub fn from_args(args: &ArgMatches) -> Self {
         let pattern = args
             .get_one::<String>("pattern")
             .expect("--pattern is a required argument")
@@ -34,17 +34,27 @@ impl Config {
     }
 }
 
-pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
+/// # Errors
+///
+/// Will return an error in the following cases:
+/// - If the provided regular expression pattern is invalid,
+///   [regex::Error](https://docs.rs/regex/latest/regex/enum.Error.html) is returned.
+/// - If any of the input files cannot be read (e.g., due to missing files,
+///   insufficient permissions, or other I/O issues),
+///   a [std::io::Error](https://doc.rust-lang.org/std/io/struct.Error.html) is returned.
+/// - Other errors may be propagated as a boxed `Error`.
+#[expect(clippy::print_stdout)]
+pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
     let pattern = RegexBuilder::new(&config.pattern)
         .case_insensitive(config.ignore_case)
         .build()?;
 
     for file in &config.files {
-        let file_contents = fs::read_to_string(file)?; // TODO: Specify the file that gave an error
+        let file_contents = fs::read_to_string(file)?;
         let file_name = if config.files.len() > 1 {
             format!("{file} ")
         } else {
-            "".to_string()
+            String::new()
         };
         for line in search(&pattern, &file_contents, config.invert_match) {
             println!("{file_name}{line}");
@@ -68,6 +78,7 @@ pub fn search<'a>(pattern: &'a Regex, contents: &'a str, invert_match: bool) -> 
 }
 
 #[cfg(test)]
+#[expect(clippy::unwrap_used)]
 mod tests {
     use super::*;
 
@@ -80,7 +91,7 @@ mod tests {
         assert_eq!(
             vec!["I am not obsessed with treasure."],
             search(&pattern, contents, false)
-        )
+        );
     }
 
     #[test]
@@ -94,7 +105,7 @@ mod tests {
         Too long I've been starving to death and haven't died.\n\
         I feel nothing.\n\
         Not the wind on my face nor the spray of the sea.";
-        assert_eq!(vec!["I feel nothing."], search(&pattern, contents, false))
+        assert_eq!(vec!["I feel nothing."], search(&pattern, contents, false));
     }
 
     #[test]
@@ -109,7 +120,7 @@ mod tests {
                 "It's remarkable how often those two traits coincide."
             ],
             search(&pattern, contents, true)
-        )
+        );
     }
 
     #[test]
@@ -126,6 +137,6 @@ mod tests {
         assert_eq!(
             vec!["That's not much incentive for me to fight fair, then, is it?"],
             search(&pattern, contents, true)
-        )
+        );
     }
 }
