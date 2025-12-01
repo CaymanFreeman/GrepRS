@@ -25,7 +25,7 @@
 
 ## Overview
 
-GrepRS is a semi-faithful Rust recreation of the GNU grep utility. GrepRS is used to search for text within files and return the lines where the text is found. Regex are used for the search pattern. 
+GrepRS is a semi-faithful Rust recreation of the GNU grep utility. GrepRS is used to search for text within files and return the lines where the text is found. [Regexes](https://en.wikipedia.org/wiki/Regular_expression#Patterns) are used for the search pattern. 
 
 ## Attributions
 
