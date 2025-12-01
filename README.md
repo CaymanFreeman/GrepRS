@@ -25,7 +25,7 @@
 
 ## Overview
 
-GrepRS is a semi-faithful Rust recreation of the GNU grep utility. GrepRS is used to search for text within files and return the lines where the text is found. Regex are used for the search pattern. 
+GrepRS is a semi-faithful Rust recreation of the GNU grep utility. GrepRS is used to search for text within files and return the lines where the text is found. [Regexes](https://en.wikipedia.org/wiki/Regular_expression#Patterns) are used for the search pattern. 
 
 ## Attributions
 
@@ -50,6 +50,23 @@ git clone https://github.com/CaymanFreeman/GrepRS && cd GrepRS
 
 ```bash
 cargo run --release -- --help
+```
+```txt
+Finds and returns matching lines for regex patterns in files
+
+Usage: grep_rs [OPTIONS] <pattern> <file>...
+
+Arguments:
+  <pattern>  The regex pattern to search for
+  <file>...  The file(s) to search within
+
+Options:
+  -i, --ignore-case      Ignore character casing [env: IGNORE_CASE=]
+      --no-ignore-case   Do not ignore character casing
+  -v, --invert-match     Return non-matching lines instead [env: INVERT_MATCH=]
+      --no-invert-match  Do not return non-matching lines
+  -h, --help             Print help
+  -V, --version          Print version
 ```
 ‎
 ‎
