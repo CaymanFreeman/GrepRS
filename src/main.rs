@@ -1,5 +1,5 @@
 use clap::builder::FalseyValueParser;
-use clap::{command, Arg, ArgAction, ArgMatches};
+use clap::{Arg, ArgAction, ArgMatches, command};
 use grep_rs::Config;
 use std::{env, process};
 
