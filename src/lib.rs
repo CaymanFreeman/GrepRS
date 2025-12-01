@@ -1,3 +1,5 @@
+#![warn(clippy::all, rust_2018_idioms)]
+
 use clap::ArgMatches;
 use regex::{Regex, RegexBuilder};
 use std::error::Error;

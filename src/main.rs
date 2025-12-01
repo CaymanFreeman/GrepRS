@@ -1,3 +1,5 @@
+#![warn(clippy::all, rust_2018_idioms)]
+
 use clap::builder::FalseyValueParser;
 use clap::{Arg, ArgAction, ArgMatches, command};
 use grep_rs::Config;
