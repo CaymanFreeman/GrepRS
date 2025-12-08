@@ -38,6 +38,7 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
+      - run: sudo apt-get install libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libssl-dev
       - uses: actions-rs/cargo@v1
         with:
           command: test
@@ -105,4 +106,4 @@ jobs:
         with:
           use-cross: true
           command: build
-          args: --verbose --release --target=${{ matrix.target }}
+          args: --locked --verbose --release --target=${{ matrix.target }}

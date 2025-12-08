@@ -4,12 +4,21 @@ version = "0.1.0"
 authors = ["Cayman Freeman"]
 edition = "2024"
 rust-version = "1.88"
+description = "Finds and returns matching lines for regex patterns in files"
 repository = "https://github.com/CaymanFreeman/GrepRS"
 license = "MIT OR Apache-2.0"
 include = ["LICENSE-APACHE.md", "LICENSE-MIT.md", "**/*.rs", "Cargo.toml"]
 
 [package.metadata.docs.rs]
 all-features = true
+
+[package.metadata.deb]
+extended-description = "Finds and returns matching lines for regex patterns in files"
+section = "utility"
+priority = "optional"
+assets = [
+    ["target/release/grep_rs", "usr/bin/", "755"]
+]
 
 [dependencies]
 clap = { version = "4.5.29", features = ["cargo", "env"] }
