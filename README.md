@@ -1,18 +1,7 @@
 <div align="center">
   <img src="assets/icon.png" width="256" height="256" alt="GrepRS Logo">
-</div>
-
-<br>
-
-<div align="center">
   <h1>GrepRS</h1>
-</div>
-
-<div align="center">
   <h3>GNU grep but with more iron oxide</h3>
-</div>
-
-<div align="center">
   <a href="https://gitlab.com/CaymanFreeman/GrepRS/-/blob/main/LICENSE-MIT.md"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-%23B20D35?style=flat"></a>&nbsp;
   <a href="https://gitlab.com/CaymanFreeman/GrepRS/-/blob/main/LICENSE-APACHE.md"><img alt="Apache License" src="https://img.shields.io/badge/license-Apache-%23a6215a?style=flat"></a>&nbsp;
   <a href="https://www.rust-lang.org/"><img alt="Built With Rust" src="https://img.shields.io/badge/built_with-Rust-%23f74c00?style=flat"></a>&nbsp;
@@ -65,7 +54,6 @@ Options:
   -h, --help             Print help
   -V, --version          Print version
 ```
-‎
 ‎
 
 hi :)
