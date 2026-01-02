@@ -102,6 +102,9 @@ prepare-metadata:
 build-linux-x86:
   image: rust:slim
   stage: build
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - when: never
   needs:
     - prepare-metadata
   before_script:
@@ -116,6 +119,9 @@ build-linux-x86:
 package-linux-x86:
   image: rust:slim
   stage: package
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - when: never
   needs:
     - prepare-metadata
     - build-linux-x86
@@ -138,6 +144,9 @@ package-linux-x86:
 upload-packages:
   image: registry.gitlab.com/gitlab-org/cli:latest
   stage: package
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - when: never
   needs:
     - prepare-metadata
     - package-linux-x86
@@ -149,6 +158,9 @@ upload-packages:
 create-release:
   image: registry.gitlab.com/gitlab-org/cli:latest
   stage: release
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - when: never
   needs:
     - prepare-metadata
   script:
