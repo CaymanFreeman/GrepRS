@@ -22,7 +22,7 @@ assets = [
 
 [package.metadata.generate-rpm]
 assets = [
-    { source = "target/release/process_manager", dest = "/usr/bin/", mode = "755" }
+    { source = "target/release/grep_rs", dest = "/usr/bin/", mode = "755" }
 ]
 
 [dependencies]
